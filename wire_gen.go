@@ -8,22 +8,27 @@ package main
 
 import (
 	"github.com/go-kratos/kratos/v2"
+	"github.com/google/wire"
 	"user/controller"
 	"user/repo"
-	service2 "user/service"
+	"user/server"
+	"user/service"
 )
 
 // Injectors from wire.go:
 
-// wireApp init kratos application.
-func wireApp2() (*kratos.App, func(), error) {
-	iHelloRepo := service.NewHelloRepo()
-	helloService := service2.NewHelloService(iHelloRepo)
-	helloController := Controller.NewHelloController(helloService)
-	server := NewHTTPServer(helloController)
-	app := newApp(server)
+// wireApp 初始化 Kratos App
+func wireApp() (*kratos.App, func(), error) {
+	iHelloRepo := repo.NewHelloRepo()
+	helloService := service.NewHelloService(iHelloRepo)
+	helloController := controller.NewHelloController(helloService)
+	httpServer := server.NewHTTPServer(helloController)
+	app := newApp(httpServer)
 	return app, func() {
 	}, nil
 }
 
+// wire.go:
 
+// ProviderSet 定义所有依赖
+var ProviderSet = wire.NewSet(repo.NewHelloRepo, service.NewHelloService, controller.NewHelloController, server.NewHTTPServer, newApp)

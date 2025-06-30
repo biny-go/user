@@ -35,7 +35,7 @@ func newApp(hs *http.Server) *kratos.App {
 }
 
 func main() {
-	app, cleanup, err := wireApp2()
+	app, cleanup, err := wireApp()
 	if err != nil {
 		panic(err)
 	}
