@@ -4,10 +4,10 @@ import (
 	"context"
 
 	pb "user/api"
-
 	svc "user/service"
 
 	common "github.com/biny-go/loong/proto/common"
+	"github.com/go-kratos/kratos/v2/transport/http"
 )
 
 type HelloController struct {
@@ -17,6 +17,10 @@ type HelloController struct {
 
 func NewHelloController(svc *svc.HelloService) *HelloController {
 	return &HelloController{s: svc}
+}
+
+func (c *HelloController) Register(srv *http.Server) {
+	pb.RegisterHelloHTTPServer(srv, c)
 }
 
 func (c *HelloController) SaveHello(ctx context.Context, req *pb.SaveHelloRequest) (*common.BaseResult, error) {

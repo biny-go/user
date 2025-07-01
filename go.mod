@@ -6,7 +6,7 @@ go 1.24.4
 replace github.com/biny-go/loong => ../loong // 替换为实际本地路径
 
 require (
-	github.com/biny-go/loong v1.1.2
+	github.com/biny-go/loong v1.1.3
 	github.com/go-kratos/kratos/v2 v2.8.4
 	github.com/google/wire v0.6.0
 	github.com/jinzhu/copier v0.4.0
@@ -20,7 +20,6 @@ require (
 	github.com/go-playground/form/v4 v4.2.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/sync v0.15.0 // indirect
 	golang.org/x/sys v0.31.0 // indirect
